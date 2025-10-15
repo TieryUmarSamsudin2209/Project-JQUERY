@@ -20,11 +20,12 @@ $("#submit").on("click", function () {
     let dataTodo = data.filter(d => d?.status === false) ?? []
     let dataDone = data.filter(d => d.status === true) ?? []
 
-    data?.length > 0 && todo.html(`${$.map(dataTodo, (d, i) => `<li> ${d?.task_list} <a class="text-danger" href="#" onclick="deleteList(${i})">HAPUS</a> </li>`)}`)
-    data?.length > 0 && done.html(`${$.map(dataDone, (d, i) => `<li> ${d?.task_list} <a class="text-danger" href="#" onclick="deleteList(${i})">HAPUS</a> </li>`)}`)
+    data?.length > 0 && todo.html(`${$.map(dataTodo, (d, i) => `<li> ${d?.task_list} <a class="text-danger" href="#" onclick="deleteList(${data.indexOf(d)})">HAPUS</a> </li>`)}`)
+    data?.length > 0 && done.html(`${$.map(dataDone, (d, i) => `<li> ${d?.task_list} <a class="text-danger" href="#" onclick="deleteList(${data.indexOf(d)})">HAPUS</a> </li>`)}`)
 })
 
 function deleteList(i) {
+    // Hapus data dari array berdasarkan index asli
     data.splice(i, 1)
     
     let dataTodo = data.filter(d => d?.status === false) ?? []
